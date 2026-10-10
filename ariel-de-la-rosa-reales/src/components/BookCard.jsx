@@ -1,13 +1,33 @@
+const categoryBadgeClasses = {
+  Arquitectura: 'badge-arquitectura',
+  'Diseño Industrial': 'badge-industrial',
+  'Diseño Gráfico': 'badge-grafico',
+  Estética: 'badge-estetica',
+  Tipografía: 'badge-tipografia',
+};
+
 export function BookCard({ book }) {
+  const categoryBadgeClass = categoryBadgeClasses[book.categoria] || 'badge-neutral';
+
   return (
-    <div className="book-card">
-      <h3>{book.title}</h3>
-      <p><strong>Autor:</strong> {book.author}</p>
-      <p><strong>Categoría:</strong> {book.category}</p>
-      <p><strong>Año:</strong> {book.year}</p>
-      <span className={book.available ? "badge available" : "badge unavailable"}>
-        {book.available ? "Disponible" : "No disponible"}
-      </span>
-    </div>
+    <article className="book-card">
+      <div className="card-top">
+        <div className="card-icon-container" aria-hidden="true">
+          {book.categoria.slice(0, 1)}
+        </div>
+        {book.destacado && <span className="card-rating-badge">★ Destacado</span>}
+      </div>
+      <h2 className="card-title">{book.titulo}</h2>
+      <p className="card-author">{book.autor}</p>
+      <p className="card-summary">{book.resumen}</p>
+      <div className="card-details-box">
+        <span>{book.anio}</span>
+        <span>{book.paginas} páginas</span>
+      </div>
+      <div className="card-footer">
+        <span className={`badge ${categoryBadgeClass}`}>{book.categoria}</span>
+        <span className="card-meta">{book.calificacion.toFixed(1)} / 5</span>
+      </div>
+    </article>
   );
 }

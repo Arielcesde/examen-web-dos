@@ -6,14 +6,13 @@ export function Layout() {
   return (
     <div className="app-container">
       <Navbar />
-      <main className="content">
+      <main className="container">
         <Outlet />
       </main>
       <Footer />
     </div>
   );
 }
-
 
 
 
